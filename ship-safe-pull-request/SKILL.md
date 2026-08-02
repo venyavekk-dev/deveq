@@ -1,6 +1,6 @@
 ---
 name: ship-safe-pull-request
-description: Safely deliver focused project changes through a pull request by confirming scope, inspecting repository state, isolating work, making intentional commits, running relevant validation, opening a well-described PR, reporting deployment previews, and waiting for explicit approval before merge. Use when Codex is asked to implement and publish a change, prepare a pull request, or carry a coding task from an approved plan through review-ready delivery.
+description: Safely delivers focused project changes through a pull request by confirming scope, inspecting repository state, isolating work, making intentional commits, running relevant validation, opening a well-described PR, reporting deployment previews, and waiting for explicit approval before merge. Use for implementing and publishing changes, preparing pull requests, or carrying an approved coding task through review-ready delivery.
 ---
 
 # Ship Safe Pull Request
