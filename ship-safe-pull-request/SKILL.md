@@ -9,7 +9,7 @@ Deliver changes through a small, reviewable pull request while preserving unrela
 
 ## Follow repository instructions
 
-1. Find and read every applicable `AGENTS.md`, starting with the broadest scope and continuing to the target files.
+1. Find and read every applicable `AGENTS.md` and `CLAUDE.md`, starting with the broadest scope and continuing to the target files.
 2. Treat project-specific instructions as additions to broader instructions.
 3. Follow the user's explicit request when it overrides a default in this workflow.
 
@@ -70,6 +70,20 @@ Deliver changes through a small, reviewable pull request while preserving unrela
 2. After opening the pull request, find and share the preview URL when available.
 3. After every subsequent push to that pull request, find and share the newest preview URL again.
 4. If preview access requires authentication, rely on build, lint, typecheck, tests, and safe HTTP checks for verification.
+
+## Present the result
+
+Always finish pull-request delivery with a concise, self-contained report containing:
+
+1. **Outcome** — State the completed result in one sentence.
+2. **Pull request** — Provide a clickable URL to the pull request.
+3. **Preview** — Provide the latest clickable Vercel or other deployment-preview URL. If no preview is available, explicitly state why.
+4. **Validation** — List every check actually run and its result. Never imply that an unrun check passed.
+5. **Git** — State the head branch and relevant commit identifiers.
+6. **Risks** — State unresolved failures, limitations, or `none`.
+7. **Merge** — Ask for explicit permission to merge this specific pull request.
+
+After every subsequent push to the pull request, send an updated self-contained report with the newest preview URL and validation state. Do not rely on an earlier message for required links or status.
 
 ## Stop before merge
 
