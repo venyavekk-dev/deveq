@@ -9,7 +9,7 @@ Deliver changes through a small, reviewable pull request while preserving unrela
 
 ## Follow repository instructions
 
-1. Find and read every applicable `AGENTS.md`, starting with the broadest scope and continuing to the target files.
+1. Find and read every applicable `AGENTS.md` and `CLAUDE.md`, starting with the broadest scope and continuing to the target files.
 2. Treat project-specific instructions as additions to broader instructions.
 3. Follow the user's explicit request when it overrides a default in this workflow.
 
@@ -25,14 +25,18 @@ Deliver changes through a small, reviewable pull request while preserving unrela
 1. Resolve the repository root, current branch, default branch, remotes, and working-tree status.
 2. Inspect existing changes before staging or switching branches.
 3. Preserve unrelated and user-owned changes. Never discard, overwrite, or silently include them.
-4. If the checkout may be used in parallel, prefer an isolated `git worktree` based on the remote default branch.
-5. Re-check the active branch immediately before commands whose target depends on it.
+4. Before any task that writes files in an existing Git repository, create an isolated `git worktree` from the latest remote default branch. Use the shared checkout only for read-only work unless the user explicitly authorizes editing it.
+5. Treat an uninitialized repository without a first commit and a task that must continue specific uncommitted user changes as exceptions requiring an agreed safe approach before editing.
+6. Never switch branches or use `git stash`, `git reset`, `git clean`, `git checkout --`, or equivalent cleanup commands in the shared checkout to prepare it for the task.
+7. Re-check the active branch and worktree path immediately before commands whose target depends on them.
 
-## Create an isolated branch
+## Create an isolated worktree and branch
 
-1. Start from the current remote default branch unless the user names another base.
-2. Use the branch naming convention from repository instructions. Otherwise use `codex/<short-task-name>`.
-3. Record the exact base and head branch names for later pull-request creation.
+1. Fetch the remote state and start from the latest remote default branch unless the user names another base.
+2. Use a unique worktree path and branch for each task.
+3. Use the branch naming convention from repository instructions. Otherwise use `codex/<short-task-name>`.
+4. Record the worktree path and exact base and head branch names for later checks and pull-request creation.
+5. Do not remove a worktree while it contains uncommitted or unpushed changes.
 
 ## Implement the approved scope
 
@@ -70,6 +74,20 @@ Deliver changes through a small, reviewable pull request while preserving unrela
 2. After opening the pull request, find and share the preview URL when available.
 3. After every subsequent push to that pull request, find and share the newest preview URL again.
 4. If preview access requires authentication, rely on build, lint, typecheck, tests, and safe HTTP checks for verification.
+
+## Present the result
+
+Always finish pull-request delivery with a concise, self-contained report containing:
+
+1. **Outcome** — State the completed result in one sentence.
+2. **Pull request** — Provide a clickable URL to the pull request.
+3. **Preview** — Provide the latest clickable Vercel or other deployment-preview URL. If no preview is available, explicitly state why.
+4. **Validation** — List every check actually run and its result. Never imply that an unrun check passed.
+5. **Git** — State the head branch and relevant commit identifiers.
+6. **Risks** — State unresolved failures, limitations, or `none`.
+7. **Merge** — Ask for explicit permission to merge this specific pull request.
+
+After every subsequent push to the pull request, send an updated self-contained report with the newest preview URL and validation state. Do not rely on an earlier message for required links or status.
 
 ## Stop before merge
 
