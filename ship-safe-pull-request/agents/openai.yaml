@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ship Safe Pull Request"
+  short_description: "Safely deliver focused changes through pull requests"
+  default_prompt: "Use $ship-safe-pull-request to deliver this change through a carefully scoped and validated pull request."
