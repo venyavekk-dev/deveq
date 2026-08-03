@@ -77,21 +77,22 @@ Deliver changes through a small, reviewable pull request while preserving unrela
 
 ## Present the result
 
-Always finish pull-request delivery with a concise, self-contained report containing:
+Always finish pull-request delivery with a concise, self-contained report in this order:
 
-1. **Outcome** — State the completed result in one sentence.
-2. **Pull request** — Provide a clickable URL to the pull request.
-3. **Preview** — Provide the latest clickable Vercel or other deployment-preview URL. If no preview is available, explicitly state why.
-4. **Validation** — List every check actually run and its result. Never imply that an unrun check passed.
-5. **Git** — State the head branch and relevant commit identifiers.
-6. **Risks** — State unresolved failures, limitations, or `none`.
-7. **Merge** — Ask for explicit permission to merge this specific pull request.
+1. When the work is complete, start with `Готово —` and summarize the outcome, followed by up to three short bullets when useful. When blocked before completion, start with `Работа остановлена —` and state the blocker.
+2. Show `Проект: owner/repository`.
+3. Show the branch and commit on one line: `Ветка: branch · коммит: sha`.
+4. When all checks pass and there are no known risks, write only `Проверки ок, рисков нет.` Do not list successful commands unless the user asks or the details materially affect the decision.
+5. When a check fails or a risk remains, describe only the problem. Prefix every problem line with a red circle: `🔴 Проверки: ...` or `🔴 Риск: ...`. Do not use this emoji elsewhere.
+6. Put review links on one line without an emoji: `Ревью: [открыть превью](url) · [PR № N](url)`. If no preview exists, replace the preview link with a short reason.
+7. End a merge-ready report with `Если всё хорошо — напишите «мёржи».`
+8. If the result is not merge-ready, do not ask for merge. State the next action or the input needed from the user.
 
 After every subsequent push to the pull request, send an updated self-contained report with the newest preview URL and validation state. Do not rely on an earlier message for required links or status.
 
 ## Stop before merge
 
 1. Never merge based only on passing checks or an available preview.
-2. Summarize the branch, commits, pull request, validation results, preview status, and remaining risks.
+2. Re-check the pull request, head commit, validation, preview status, and remaining risks.
 3. Ask for explicit permission to merge this specific pull request.
 4. Merge only after receiving that permission and only if no new blocking condition has appeared.
